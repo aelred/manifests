@@ -17,7 +17,7 @@ spec:
         image: aelred/tetris-server
         env:
           - name: ROCKET_PORT
-            value: 80
+            value: "80"
         ports:
         - containerPort: 80
           protocol: TCP
