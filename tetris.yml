@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tetris-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tetris
+  template:
+    metadata:
+      labels:
+        app: tetris-server
+    spec:
+      containers:
+      - name: tetris-server
+        image: aelred/tetris-server
+        env:
+          - name: ROCKET_PORT
+            value: 80
+        ports:
+        - containerPort: 80
+          protocol: TCP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tetris-server
+spec:
+  rules:
+    - host: api.tetris.ael.red
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: tetris-server
+              servicePort: 80
