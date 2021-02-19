@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: skakoui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: skakoui
+  template:
+    metadata:
+      labels:
+        app: skakoui
+    spec:
+      containers:
+      - name: skakoui
+        image: aelred/skakoui
+        env:
+          - name: LICHESS_API_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: lichess-api-token
+                key: value
+        ports:
+        - containerPort: 80
+          protocol: TCP
