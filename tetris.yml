@@ -31,7 +31,8 @@ spec:
     - host: api.tetris.ael.red
       http:
         paths:
-          - path: /
+          - pathType: Prefix
+            path: /
             backend:
               service:
                 name: tetris-server
