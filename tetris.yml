@@ -33,5 +33,7 @@ spec:
         paths:
           - path: /
             backend:
-              serviceName: tetris-server
-              servicePort: 80
+              service:
+                name: tetris-server
+                port:
+                  number: 80
