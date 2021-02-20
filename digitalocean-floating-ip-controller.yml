@@ -76,6 +76,7 @@ kind: ConfigMap
 apiVersion: v1
 metadata:
   name: floating-ip-controller
+  namespace: kube-system
 data:
   floating-ip: 157.245.29.41
 ---
@@ -83,3 +84,4 @@ kind: Secret
 apiVersion: v1
 metadata:
   name: floating-ip-controller
+  namespace: kube-system
