@@ -27,7 +27,6 @@ kind: Service
 metadata:
   name: tetris-server
 spec:
-  type: NodePort
   selector:
     app: tetris-server
   ports:
