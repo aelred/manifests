@@ -66,8 +66,22 @@ spec:
                 secretKeyRef:
                   name: floating-ip-controller
                   key: digitalocean-token
-          image: mwthink/digitalocean-floating-ip-controller:v0.1.3
+          image: mwthink/digitalocean-floating-ip-controller:v0.1.4
           name: floating-ip-controller
       securityContext:
         runAsUser: 1000
       serviceAccountName: floating-ip-controller
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: floating-ip-controller
+  namespace: kube-system
+data:
+  floating-ip: 157.245.29.41
+---
+kind: Secret
+apiVersion: v1
+metadata:
+  name: floating-ip-controller
+  namespace: kube-system
