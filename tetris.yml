@@ -24,10 +24,10 @@ spec:
 ---
 apiVersion: v1
 kind: Service
-type: NodePort
 metadata:
   name: tetris-server
 spec:
+  type: NodePort
   selector:
     app: tetris-server
   ports:
