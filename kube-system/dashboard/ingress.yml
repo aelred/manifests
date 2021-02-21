@@ -12,10 +12,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - dashboard.example.com
+        - kube.ael.red
       secretName: kubernetes-dashboard-tls
   rules:
-    - host: dashboard.example.com
+    - host: kube.ael.red
       http:
         paths:
           - path: /
