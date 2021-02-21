@@ -61,6 +61,7 @@ apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
 metadata:
   name: tetris-server
+  namespace: flux-system
 spec:
   image: docker.io/aelred/tetris-server
   interval: 1m0s
@@ -69,6 +70,7 @@ apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImagePolicy
 metadata:
   name: tetris-server
+  namespace: flux-system
 spec:
   imageRepositoryRef:
     name: tetris-server
