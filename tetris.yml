@@ -14,10 +14,10 @@ spec:
     spec:
       containers:
       - name: tetris-server
-        image: aelred/tetris-server:0f25a4dea6974b2cce79312728e5b16d3f991b84 # {"$imagepolicy": "flux-system:tetris-server"}
+        image: docker.io/aelred/tetris-server:master-441d6b93-1613945081 # {"$imagepolicy": "flux-system:tetris-server"}
         env:
-          - name: ROCKET_PORT
-            value: "8000"
+        - name: ROCKET_PORT
+          value: "8000"
         ports:
         - containerPort: 8000
           protocol: TCP
@@ -30,8 +30,8 @@ spec:
   selector:
     app: tetris-server
   ports:
-    - protocol: TCP
-      port: 8000
+  - protocol: TCP
+    port: 8000
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -42,20 +42,20 @@ metadata:
     kubernetes.io/ingress.class: nginx
 spec:
   tls:
-    - hosts:
-        - api.tetris.ael.red
-      secretName: tetris-server-tls
+  - hosts:
+    - api.tetris.ael.red
+    secretName: tetris-server-tls
   rules:
-    - host: api.tetris.ael.red
-      http:
-        paths:
-          - pathType: Prefix
-            path: /
-            backend:
-              service:
-                name: tetris-server
-                port:
-                  number: 8000
+  - host: api.tetris.ael.red
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: tetris-server
+            port:
+              number: 8000
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
@@ -91,5 +91,5 @@ spec:
   secretRef:
     name: webhook-token
   resources:
-    - kind: ImageRepository
-      name: tetris-server
+  - kind: ImageRepository
+    name: tetris-server
