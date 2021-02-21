@@ -43,8 +43,8 @@ metadata:
 spec:
   tls:
     - hosts:
-        - service.example.com
-      secretName: example-service-tls
+        - api.tetris.ael.red
+      secretName: tetris-server-tls
   rules:
     - host: api.tetris.ael.red
       http:
