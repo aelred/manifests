@@ -50,7 +50,7 @@ metadata:
 spec:
   acme:
     server: https://acme-v02.api.letsencrypt.org/directory
-    email: user@example.com
+    email: aelred717@gmail.com
     privateKeySecretRef:
       name: letsencrypt
     solvers:
