@@ -62,7 +62,7 @@ kind: ImageRepository
 metadata:
   name: tetris-server
 spec:
-  image: dockerhub.com/aelred/tetris-server
+  image: docker.io/aelred/tetris-server
   interval: 1m0s
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
