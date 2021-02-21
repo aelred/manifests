@@ -24,3 +24,7 @@ spec:
         ports:
         - containerPort: 80
           protocol: TCP
+        resources:
+          requests:
+            cpu: 100m
+            memory: 200Mi
