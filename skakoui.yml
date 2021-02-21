@@ -24,9 +24,3 @@ spec:
         ports:
         - containerPort: 80
           protocol: TCP
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: lichess-api-token
-type: Opaque
