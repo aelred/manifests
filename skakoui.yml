@@ -16,11 +16,11 @@ spec:
       - name: skakoui
         image: aelred/skakoui
         env:
-          - name: LICHESS_API_TOKEN
-            valueFrom:
-              secretKeyRef:
-                name: lichess-api-token
-                key: value
+        - name: LICHESS_API_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: lichess-api-token
+              key: value
         ports:
         - containerPort: 80
           protocol: TCP
@@ -35,7 +35,7 @@ metadata:
   name: skakoui
   namespace: flux-system
 spec:
-  image: docker.io/aelred/skakoui:latest # {"$imagepolicy": "flux-system:skakoui"}
+  image: docker.io/aelred/skakoui:master-7cef23cf-1614035931 # {"$imagepolicy": "flux-system:skakoui"}
   interval: 1m0s
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
@@ -63,5 +63,5 @@ spec:
   secretRef:
     name: webhook-token
   resources:
-    - kind: ImageRepository
-      name: skakouI
+  - kind: ImageRepository
+    name: skakouI
