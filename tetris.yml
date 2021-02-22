@@ -108,7 +108,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: tetris-server
 spec:
-  storageClassName: rook-block
+  storageClassName: rook-fs
   accessModes: [ReadWriteMany]
   resources:
     requests:
