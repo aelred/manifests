@@ -95,4 +95,3 @@ spec:
   resources:
   - kind: ImageRepository
     name: tetris-server
----
