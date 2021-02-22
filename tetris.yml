@@ -22,12 +22,12 @@ spec:
         - containerPort: 8000
           protocol: TCP
         volumeMounts:
-          - mountPath: "/root/.tetris"
-            name: tetris-storage
+        - mountPath: "/root/.tetris"
+          name: tetris-storage
       volumes:
-        - name: tetris-storage
-          persistentVolumeClaim:
-            claimName: tetris-server
+      - name: tetris-storage
+        persistentVolumeClaim:
+          claimName: tetris-server
 ---
 apiVersion: v1
 kind: Service
