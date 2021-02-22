@@ -21,6 +21,7 @@ metadata:
   name: rook-fs
 provisioner: rook.cephfs.csi.ceph.com
 parameters:
+  fsName: rook-fs
   pool: replicapool
   clusterID: rook
   csi.storage.k8s.io/provisioner-secret-name: rook-csi-cephfs-provisioner
