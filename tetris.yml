@@ -109,7 +109,7 @@ metadata:
   name: tetris-server
 spec:
   storageClassName: rook-block
-  accessModes: [ReadWriteOnce]
+  accessModes: [ReadWriteMany]
   resources:
     requests:
       storage: 1Mi
