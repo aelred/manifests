@@ -35,7 +35,7 @@ metadata:
   name: skakoui
   namespace: flux-system
 spec:
-  image: docker.io/aelred/skakoui
+  image: docker.io/aelred/skakoui:latest # {"$imagepolicy": "flux-system:tetris-server"}
   interval: 1m0s
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
