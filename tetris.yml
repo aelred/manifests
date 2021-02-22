@@ -21,13 +21,6 @@ spec:
         ports:
         - containerPort: 8000
           protocol: TCP
-        volumeMounts:
-        - mountPath: "/root/.tetris/"
-          name: tetris-storage
-      volumes:
-      - name: tetris-storage
-        persistentVolumeClaim:
-          claimName: tetris-server
 ---
 apiVersion: v1
 kind: Service
@@ -103,13 +96,3 @@ spec:
   - kind: ImageRepository
     name: tetris-server
 ---
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: tetris-server
-spec:
-  storageClassName: rook-fs
-  accessModes: [ReadWriteMany]
-  resources:
-    requests:
-      storage: 1Ki
