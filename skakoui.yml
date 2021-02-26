@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: skakoui
-        image: aelred/skakoui
+        image: aelred/skakoui # {"$imagepolicy": "flux-system:skakoui"}
         env:
         - name: LICHESS_API_TOKEN
           valueFrom:
@@ -35,7 +35,7 @@ metadata:
   name: skakoui
   namespace: flux-system
 spec:
-  image: docker.io/aelred/skakoui:master-7cef23cf-1614035931 # {"$imagepolicy": "flux-system:skakoui"}
+  image: docker.io/aelred/skakoui
   interval: 1m0s
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
