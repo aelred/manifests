@@ -16,7 +16,7 @@ spec:
       - name: skakoui
         image: docker.io/aelred/skakoui:master-4013ffe8-1633599987 # {"$imagepolicy": "flux-system:skakoui"}
         env:
-        - name: LICHESS_API_TOKEN
+        - name: LICHESS_BOT_TOKEN
           valueFrom:
             secretKeyRef:
               name: lichess-api-token
