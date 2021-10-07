@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: skakoui
-        image: docker.io/aelred/skakoui:master-d14f1724-1633601576 # {"$imagepolicy": "flux-system:skakoui"}
+        image: docker.io/aelred/skakoui:master-3bd1100d-1633614003 # {"$imagepolicy": "flux-system:skakoui"}
         env:
         - name: LICHESS_BOT_TOKEN
           valueFrom:
