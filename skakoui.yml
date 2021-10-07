@@ -85,6 +85,6 @@ spec:
         spec:
           restartPolicy: Never
           containers:
-            - name: kubectl
-              image: bitnami/kubectl
-              command: ['kubectl', 'rollout', 'restart', 'deployment/skakoui']
+          - name: kubectl
+            image: bitnami/kubectl
+            command: ['kubectl', 'rollout', 'restart', 'deployment/skakoui']
