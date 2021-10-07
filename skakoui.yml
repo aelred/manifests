@@ -65,3 +65,26 @@ spec:
   resources:
   - kind: ImageRepository
     name: skakoui
+---
+# lichess-bot seems to disconnect from Lichess within 1-2 days
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: skakoui-periodic-restart
+spec:
+  concurrencyPolicy: Forbid
+  schedule: '@midnight'
+  jobTemplate:
+    spec:
+      backoffLimit: 1
+      activeDeadlineSeconds: 600
+      template:
+        metadata:
+          annotations:
+            sidecar.istio.io/inject: "false"
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: kubectl
+              image: bitnami/kubectl
+              command: ['kubectl', 'rollout', 'restart', 'deployment/skakoui']
