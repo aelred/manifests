@@ -72,6 +72,7 @@ apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
   name: skakoui-periodic-restart
+  namespace: default
 spec:
   concurrencyPolicy: Forbid
   schedule: '@midnight'
