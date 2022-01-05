@@ -109,6 +109,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: tetris-server
+  namespace: default
 spec:
   storageClassName: rook-fs
   accessModes: [ReadWriteMany]
