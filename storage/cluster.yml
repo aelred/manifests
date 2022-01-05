@@ -5,7 +5,6 @@ metadata:
   namespace: rook-ceph
 spec:
   backend: ceph
-  hostNetwork: false
   dataDirHostPath: /storage
   placement:
     all:
