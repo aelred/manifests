@@ -1,8 +1,8 @@
 apiVersion: ceph.rook.io/v1
 kind: CephCluster
 metadata:
-  name: rook
-  namespace: rook
+  name: rook-ceph
+  namespace: rook-ceph
 spec:
   backend: ceph
   hostNetwork: false

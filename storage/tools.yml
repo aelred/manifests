@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: rook-tools
-  namespace: rook
+  namespace: rook-ceph
   labels:
     app: rook-tools
 spec:

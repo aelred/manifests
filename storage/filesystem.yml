@@ -2,7 +2,7 @@ apiVersion: ceph.rook.io/v1
 kind: CephFilesystem
 metadata:
   name: rook-fs
-  namespace: rook
+  namespace: rook-ceph
 spec:
   metadataPool:
     replicated:
@@ -25,7 +25,7 @@ parameters:
   pool: rook-fs-data0
   clusterID: rook
   csi.storage.k8s.io/provisioner-secret-name: rook-csi-cephfs-provisioner
-  csi.storage.k8s.io/provisioner-secret-namespace: rook
+  csi.storage.k8s.io/provisioner-secret-namespace: rook-ceph
   csi.storage.k8s.io/node-stage-secret-name: rook-csi-cephfs-node
-  csi.storage.k8s.io/node-stage-secret-namespace: rook
+  csi.storage.k8s.io/node-stage-secret-namespace: rook-ceph
 reclaimPolicy: Delete
