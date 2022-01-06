@@ -20,5 +20,5 @@ spec:
     useAllNodes: true
     useAllDevices: false
     config:
-      databaseSizeMB: 1024
-      journalSizeMB: 1024
+      databaseSizeMB: "1024"
+      journalSizeMB: "1024"
