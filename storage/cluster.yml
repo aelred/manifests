@@ -22,3 +22,4 @@ spec:
     config:
       databaseSizeMB: "1024"
       journalSizeMB: "1024"
+    deviceFilter: sda
