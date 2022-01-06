@@ -19,6 +19,6 @@ spec:
   storage:
     useAllNodes: true
     useAllDevices: false
-    storeConfig:
+    config:
       databaseSizeMB: 1024
       journalSizeMB: 1024
