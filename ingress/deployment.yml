@@ -31,7 +31,7 @@ spec:
       hostNetwork: true
       terminationGracePeriodSeconds: 60
       containers:
-      - image: quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.33.0
+      - image: k8s.gcr.io/ingress-nginx/controller:v1.1.0@sha256:f766669fdcf3dc26347ed273a55e754b427eb4411ee075a53f30718b4499076a
         name: nginx-ingress-controller
         imagePullPolicy: Always
         ports:
