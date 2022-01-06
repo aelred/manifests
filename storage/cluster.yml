@@ -18,8 +18,7 @@ spec:
     allowMultiplePerNode: false
   storage:
     useAllNodes: true
-    useAllDevices: false
+    useAllDevices: true
     config:
       databaseSizeMB: "1024"
       journalSizeMB: "1024"
-    deviceFilter: sda
