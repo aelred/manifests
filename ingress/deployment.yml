@@ -15,10 +15,12 @@ spec:
       labels:
         k8s-app: nginx-ingress-controller
     spec:
+      # allow this to run on kube1
       tolerations:
       - key: node-role.kubernetes.io/master
         operator: Equal
         effect: NoSchedule
+      # MAKE this run on kube1
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
