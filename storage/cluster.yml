@@ -4,7 +4,6 @@ metadata:
   name: rook-ceph
   namespace: rook-ceph
 spec:
-  backend: ceph
   dataDirHostPath: /storage
   placement:
     all:
@@ -23,5 +22,3 @@ spec:
     storeConfig:
       databaseSizeMB: 1024
       journalSizeMB: 1024
-    directories:
-    - path: /storage/data
