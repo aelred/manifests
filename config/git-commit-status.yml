@@ -2,13 +2,12 @@ apiVersion: notification.toolkit.fluxcd.io/v1beta1
 kind: Provider
 metadata:
   name: flux-system
-  namespace: default
+  namespace: flux-system
 spec:
   type: github
   address: https://github.com/aelred/manifests
   secretRef:
     name: github-token
----
 ---
 apiVersion: notification.toolkit.fluxcd.io/v1beta1
 kind: Alert
