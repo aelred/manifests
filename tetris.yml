@@ -21,7 +21,7 @@ spec:
   path: ./deploy/manifests
   images:
     - name: docker.io/aelred/tetris-server
-      newTag: master-f6c70e30-1641674177 # {"$imagepolicy": "flux-system:tetris-server:tag"}
+      newTag: master-fefb6e44-1641676773 # {"$imagepolicy": "flux-system:tetris-server:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
