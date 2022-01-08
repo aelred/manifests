@@ -59,3 +59,28 @@ spec:
   resources:
     - kind: ImageRepository
       name: tetris-server
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta1
+kind: Provider
+metadata:
+  name: tetris
+  namespace: flux-system
+spec:
+  type: github
+  address: https://github.com/aelred/tetris
+  secretRef:
+    name: github-token
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta1
+kind: Alert
+metadata:
+  name: tetris
+  namespace: flux-system
+spec:
+  providerRef:
+    name: tetris
+  eventSeverity: info
+  eventSources:
+    - kind: Kustomization
+      name: tetris
+      namespace: default
