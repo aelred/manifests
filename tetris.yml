@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: tetris-server
-          image: docker.io/aelred/tetris-server:master-97e6d4ff-1641668671 # {"$imagepolicy": "flux-system:tetris-server"}
+          image: docker.io/aelred/tetris-server:master-c1f167c1-1641669254 # {"$imagepolicy": "flux-system:tetris-server"}
           env:
             - name: ROCKET_PORT
               value: "8000"
