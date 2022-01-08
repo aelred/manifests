@@ -2,7 +2,7 @@ apiVersion: notification.toolkit.fluxcd.io/v1beta1
 kind: Provider
 metadata:
   name: manifests
-  namespace: default
+  namespace: flux-system
 spec:
   type: github
   address: https://github.com/aelred/manifests
