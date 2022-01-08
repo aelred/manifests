@@ -1,9 +1,11 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: GitRepository
 metadata:
   name: tetris
 spec:
   url: https://github.com/aelred/tetris
 ---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
   name: tetris
