@@ -8,3 +8,4 @@ spec:
   address: https://github.com/aelred/manifests
   secretRef:
     name: github-token
+    namespace: default
