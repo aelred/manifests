@@ -14,21 +14,21 @@ spec:
         app: tetris-server
     spec:
       containers:
-      - name: tetris-server
-        image: docker.io/aelred/tetris-server:master-f60881c1-1614035139 # {"$imagepolicy": "flux-system:tetris-server"}
-        env:
-        - name: ROCKET_PORT
-          value: "8000"
-        ports:
-        - containerPort: 8000
-          protocol: TCP
-        volumeMounts:
-        - mountPath: "/root/.tetris/"
-          name: tetris-storage
+        - name: tetris-server
+          image: docker.io/aelred/tetris-server:master-a3b1ca24-1641661204 # {"$imagepolicy": "flux-system:tetris-server"}
+          env:
+            - name: ROCKET_PORT
+              value: "8000"
+          ports:
+            - containerPort: 8000
+              protocol: TCP
+          volumeMounts:
+            - mountPath: "/root/.tetris/"
+              name: tetris-storage
       volumes:
-      - name: tetris-storage
-        persistentVolumeClaim:
-          claimName: tetris-server
+        - name: tetris-storage
+          persistentVolumeClaim:
+            claimName: tetris-server
 ---
 apiVersion: v1
 kind: Service
@@ -39,8 +39,8 @@ spec:
   selector:
     app: tetris-server
   ports:
-  - protocol: TCP
-    port: 8000
+    - protocol: TCP
+      port: 8000
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -54,20 +54,20 @@ metadata:
     nginx.ingress.kubernetes.io/cors-allow-origin: https://tetris.ael.red
 spec:
   tls:
-  - hosts:
-    - api.tetris.ael.red
-    secretName: tetris-server-tls
+    - hosts:
+        - api.tetris.ael.red
+      secretName: tetris-server-tls
   rules:
-  - host: api.tetris.ael.red
-    http:
-      paths:
-      - pathType: Prefix
-        path: /
-        backend:
-          service:
-            name: tetris-server
-            port:
-              number: 8000
+    - host: api.tetris.ael.red
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: tetris-server
+                port:
+                  number: 8000
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
@@ -103,8 +103,8 @@ spec:
   secretRef:
     name: webhook-token
   resources:
-  - kind: ImageRepository
-    name: tetris-server
+    - kind: ImageRepository
+      name: tetris-server
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -112,7 +112,6 @@ metadata:
   name: tetris-server
   namespace: default
 spec:
-  storageClassName: rook-fs
   accessModes: [ReadWriteMany]
   resources:
     requests:
