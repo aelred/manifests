@@ -15,3 +15,27 @@ spec:
   images:
     - name: docker.io/aelred/tetris-server
       newTag: master-c1f167c1-1641669254 # {"$imagepolicy": "flux-system:tetris-server:tag"}
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImageRepository
+metadata:
+  name: tetris-server
+  namespace: flux-system
+spec:
+  image: docker.io/aelred/tetris-server
+  interval: 1m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1alpha1
+kind: ImagePolicy
+metadata:
+  name: tetris-server
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: tetris-server
+  filterTags:
+    pattern: '^master-[a-fA-F0-9]+-(?P<ts>.*)'
+    extract: '$ts'
+  policy:
+    numerical:
+      order: asc
