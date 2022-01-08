@@ -15,6 +15,7 @@ metadata:
   name: flux-system
   namespace: flux-system
 spec:
+  summary: "TESTING"
   providerRef:
     name: flux-system
   eventSeverity: info
