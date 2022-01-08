@@ -112,7 +112,6 @@ metadata:
   name: tetris-server
   namespace: default
 spec:
-  storageClassName: rook-fs
   accessModes: [ReadWriteMany]
   resources:
     requests:
