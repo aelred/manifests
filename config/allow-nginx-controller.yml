@@ -7,8 +7,8 @@ spec:
   podSelector: {}
   ingress:
   - from:
-    - namespaceSelector:
+    - podSelector:
         matchLabels:
-          name: ingress
+          k8s-app: nginx-ingress-controller
   policyTypes:
   - Ingress
