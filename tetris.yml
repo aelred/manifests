@@ -50,7 +50,7 @@ spec:
 apiVersion: notification.toolkit.fluxcd.io/v1beta1
 kind: Receiver
 metadata:
-  name: tetris-server
+  name: tetris-server-dockerhub
   namespace: flux-system
 spec:
   type: dockerhub
@@ -59,6 +59,19 @@ spec:
   resources:
     - kind: ImageRepository
       name: tetris-server
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta1
+kind: Receiver
+metadata:
+  name: tetris-github
+  namespace: flux-system
+spec:
+  type: github
+  secretRef:
+    name: github-tetris-webhook-token
+  resources:
+    - kind: GitRepository
+      name: tetris
 ---
 apiVersion: notification.toolkit.fluxcd.io/v1beta1
 kind: Provider
