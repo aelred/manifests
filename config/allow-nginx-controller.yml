@@ -9,7 +9,6 @@ spec:
   # hostNetwork: true. Not sure how to fix this...
   podSelector: {}
   ingress:
-  - from:
-    - {}
+  - {}
   policyTypes:
   - Ingress
