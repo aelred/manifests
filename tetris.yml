@@ -72,6 +72,8 @@ spec:
   resources:
     - kind: GitRepository
       name: tetris
+    - kind: Kustomization
+      name: tetris
 ---
 apiVersion: notification.toolkit.fluxcd.io/v1beta1
 kind: Provider
