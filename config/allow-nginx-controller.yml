@@ -4,11 +4,12 @@ metadata:
   name: allow-nginx-controller
   namespace: flux-system
 spec:
+  # this just allows all traffic!
+  # Matching either the nginx-ingress-controller or ingress namespace doesn't work, because nginx is running with
+  # hostNetwork: true. Not sure how to fix this...
   podSelector: {}
   ingress:
   - from:
-    - podSelector:
-        matchLabels:
-          k8s-app: nginx-ingress-controller
+    - {}
   policyTypes:
   - Ingress
