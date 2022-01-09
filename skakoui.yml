@@ -57,5 +57,44 @@ spec:
   secretRef:
     name: webhook-token
   resources:
-  - kind: ImageRepository
+    - kind: ImageRepository
+      name: skakoui
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta1
+kind: Receiver
+metadata:
+  name: skakoui-github
+  namespace: flux-system
+spec:
+  type: github
+  secretRef:
+    name: github-skakoui-webhook-token
+  resources:
+    - kind: GitRepository
+      name: skakoui
+    - kind: Kustomization
+      name: skakoui
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta1
+kind: Provider
+metadata:
+  name: skakoui
+  namespace: flux-system
+spec:
+  type: github
+  address: https://github.com/aelred/skakoui
+  secretRef:
+    name: github-token
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta1
+kind: Alert
+metadata:
+  name: skakoui
+  namespace: flux-system
+spec:
+  providerRef:
     name: skakoui
+  eventSeverity: info
+  eventSources:
+    - kind: Kustomization
+      name: skakoui
