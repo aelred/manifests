@@ -4,6 +4,7 @@ metadata:
   name: allow-nginx-controller
   namespace: flux-system
 spec:
+  podSelector: {}
   ingress:
   - from:
     - namespaceSelector:
