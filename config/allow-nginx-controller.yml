@@ -5,6 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   podSelector: {}
-  ingress: - {}
+  ingress:
+    - {}
   policyTypes:
   - Ingress
