@@ -4,11 +4,8 @@ metadata:
   name: allow-certmanager-solver
   namespace: flux-system
 spec:
-  ingress:
-  - from:
-    - namespaceSelector: {}
   podSelector:
     matchLabels:
-      acme.cert-manager.io/http01-solver: true
+      acme.cert-manager.io/http01-solver: "true"
   policyTypes:
   - Ingress
