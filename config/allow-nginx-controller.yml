@@ -6,6 +6,9 @@ metadata:
 spec:
   podSelector: {}
   ingress:
-    - {}
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          name: ingress
   policyTypes:
   - Ingress
