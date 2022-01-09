@@ -12,8 +12,5 @@ spec:
       podSelector:
         matchLabels:
           k8s-app: nginx-ingress-controller
-  podSelector:
-    matchLabels:
-      acme.cert-manager.io/http01-solver: "true"
   policyTypes:
   - Ingress
