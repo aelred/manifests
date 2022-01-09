@@ -9,6 +9,6 @@ spec:
     - namespaceSelector: {}
   podSelector:
     matchLabels:
-      acme.cert-manager.io/http01-solver: "true"
+      acme.cert-manager.io/http01-solver: true
   policyTypes:
   - Ingress
