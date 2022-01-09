@@ -7,6 +7,7 @@ metadata:
     kubernetes.io/tls-acme: "true" # enable certificates
     cert-manager.io/cluster-issuer: letsencrypt
     acme.cert-manager.io/http01-edit-in-place: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   tls:
     - hosts:
