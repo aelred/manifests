@@ -14,4 +14,4 @@ spec:
     substitute:
       name: tetris
       image: tetris-server
-      tag: master-eb1f9229-1641778088 # {"$imagepolicy": "flux-system:tetris:tag"}
+      tag: master-b6b9ab72-1641852323 # {"$imagepolicy": "flux-system:tetris:tag"}
