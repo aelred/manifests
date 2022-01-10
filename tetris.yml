@@ -13,4 +13,5 @@ spec:
   postBuild:
     substitute:
       name: tetris
+      image: tetris-server
       tag: master-4a28f9f4-1641767242 # {"$imagepolicy": "flux-system:tetris:tag"}
