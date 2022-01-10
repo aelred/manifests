@@ -9,7 +9,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: kustomizations
-  path: ./kustomizations
+  path: ./kustomizations/service.yml
   postBuild:
     substitute:
       name: skakoui
