@@ -1,12 +1,3 @@
-apiVersion: source.toolkit.fluxcd.io/v1beta1
-kind: GitRepository
-metadata:
-  name: skakoui
-  namespace: flux-system
-spec:
-  url: https://github.com/aelred/skakoui
-  interval: 5m
----
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -17,84 +8,9 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: skakoui
-  path: ./deploy/manifests
-  images:
-    - name: docker.io/aelred/skakoui
-      newTag: master-40772ec2-1641772408 # {"$imagepolicy": "flux-system:skakoui:tag"}
----
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
-kind: ImageRepository
-metadata:
-  name: skakoui
-  namespace: flux-system
-spec:
-  image: docker.io/aelred/skakoui
-  interval: 1m0s
----
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
-kind: ImagePolicy
-metadata:
-  name: skakoui
-  namespace: flux-system
-spec:
-  imageRepositoryRef:
-    name: skakoui
-  filterTags:
-    pattern: '^master-[a-fA-F0-9]+-(?P<ts>.*)'
-    extract: '$ts'
-  policy:
-    numerical:
-      order: asc
----
-apiVersion: notification.toolkit.fluxcd.io/v1beta1
-kind: Receiver
-metadata:
-  name: skakoui-dockerhub
-  namespace: flux-system
-spec:
-  type: dockerhub
-  secretRef:
-    name: webhook-token
-  resources:
-    - kind: ImageRepository
+    name: flux-system
+  path: ./kustomizations
+  postBuild:
+    substitute:
       name: skakoui
----
-apiVersion: notification.toolkit.fluxcd.io/v1beta1
-kind: Receiver
-metadata:
-  name: skakoui-github
-  namespace: flux-system
-spec:
-  type: github
-  secretRef:
-    name: github-skakoui-webhook-token
-  resources:
-    - kind: GitRepository
-      name: skakoui
-    - kind: Kustomization
-      name: skakoui
----
-apiVersion: notification.toolkit.fluxcd.io/v1beta1
-kind: Provider
-metadata:
-  name: skakoui
-  namespace: flux-system
-spec:
-  type: github
-  address: https://github.com/aelred/skakoui
-  secretRef:
-    name: github-token
----
-apiVersion: notification.toolkit.fluxcd.io/v1beta1
-kind: Alert
-metadata:
-  name: skakoui
-  namespace: flux-system
-spec:
-  providerRef:
-    name: skakoui
-  eventSeverity: info
-  eventSources:
-    - kind: Kustomization
-      name: skakoui
+      tag: master-40772ec2-1641772408 # {"$imagepolicy": "flux-system:skakoui:tag"}
