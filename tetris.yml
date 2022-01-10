@@ -1,12 +1,3 @@
-apiVersion: source.toolkit.fluxcd.io/v1beta1
-kind: GitRepository
-metadata:
-  name: tetris
-  namespace: flux-system
-spec:
-  url: https://github.com/aelred/tetris
-  interval: 5m
----
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
@@ -17,84 +8,9 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: tetris
-  path: ./deploy/manifests
-  images:
-    - name: docker.io/aelred/tetris-server
-      newTag: master-4a28f9f4-1641767242 # {"$imagepolicy": "flux-system:tetris-server:tag"}
----
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
-kind: ImageRepository
-metadata:
-  name: tetris-server
-  namespace: flux-system
-spec:
-  image: docker.io/aelred/tetris-server
-  interval: 1m0s
----
-apiVersion: image.toolkit.fluxcd.io/v1alpha1
-kind: ImagePolicy
-metadata:
-  name: tetris-server
-  namespace: flux-system
-spec:
-  imageRepositoryRef:
-    name: tetris-server
-  filterTags:
-    pattern: '^master-[a-fA-F0-9]+-(?P<ts>.*)'
-    extract: '$ts'
-  policy:
-    numerical:
-      order: asc
----
-apiVersion: notification.toolkit.fluxcd.io/v1beta1
-kind: Receiver
-metadata:
-  name: tetris-server-dockerhub
-  namespace: flux-system
-spec:
-  type: dockerhub
-  secretRef:
-    name: webhook-token
-  resources:
-    - kind: ImageRepository
-      name: tetris-server
----
-apiVersion: notification.toolkit.fluxcd.io/v1beta1
-kind: Receiver
-metadata:
-  name: tetris-github
-  namespace: flux-system
-spec:
-  type: github
-  secretRef:
-    name: github-tetris-webhook-token
-  resources:
-    - kind: GitRepository
+    name: kustomizations
+  path: ./kustomizations/service
+  postBuild:
+    substitute:
       name: tetris
-    - kind: Kustomization
-      name: tetris
----
-apiVersion: notification.toolkit.fluxcd.io/v1beta1
-kind: Provider
-metadata:
-  name: tetris
-  namespace: flux-system
-spec:
-  type: github
-  address: https://github.com/aelred/tetris
-  secretRef:
-    name: github-token
----
-apiVersion: notification.toolkit.fluxcd.io/v1beta1
-kind: Alert
-metadata:
-  name: tetris
-  namespace: flux-system
-spec:
-  providerRef:
-    name: tetris
-  eventSeverity: info
-  eventSources:
-    - kind: Kustomization
-      name: tetris
+      tag: master-4a28f9f4-1641767242 # {"$imagepolicy": "flux-system:tetris:tag"}
