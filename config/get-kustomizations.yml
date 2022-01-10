@@ -1,0 +1,28 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: GitRepository
+metadata:
+  name: kustomizations
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  ref:
+    branch: main
+  secretRef:
+    name: flux-system
+  ignore: ".ignore-nothing"  # don't use the .sourceignore file
+  url: ssh://git@github.com/aelred/manifests.git
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta1
+kind: Receiver
+metadata:
+  name: kustomizations
+  namespace: flux-system
+spec:
+  type: github
+  events:
+    - "push"
+  secretRef:
+    name: github-manifests-webhook-token
+  resources:
+    - kind: GitRepository
+      name: kustmoizations
