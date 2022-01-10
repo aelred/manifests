@@ -21,7 +21,7 @@ spec:
   path: ./deploy/manifests
   images:
     - name: docker.io/aelred/skakoui
-      newTag: master-40772ec2-1641772408 # {"$imagepolicy": "flux-system:skakoui:tag"}
+      newTag: master-5cb2169e-1641772846 # {"$imagepolicy": "flux-system:skakoui:tag"}
 ---
 apiVersion: image.toolkit.fluxcd.io/v1alpha1
 kind: ImageRepository
