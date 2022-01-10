@@ -1,3 +1,10 @@
+# Sets up a service, which has:
+# - a repo at github.com/aelred/${name}, containing deployment manifests at ./deploy/manifests
+# - an image at docker.io/aelred/${img or name}
+#
+# Image tags have to be in the format `master-<sha>-<timestamp>` to be picked up on.
+# A secret github-${name}-webhook-token should exist, the provision repo shows how to make it.
+
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: GitRepository
 metadata:
