@@ -13,4 +13,4 @@ spec:
   postBuild:
     substitute:
       name: skakoui
-      tag: master-40772ec2-1641772408 # {"$imagepolicy": "flux-system:skakoui:tag"}
+      tag: master-5cb2169e-1641772846 # {"$imagepolicy": "flux-system:skakoui:tag"}
