@@ -1,6 +1,6 @@
 # Configures flux to read the kustomizations folder.
 # Normally it won't because of .sourceignore (which is good, because there are only templates in there).
-apiVersion: source.toolkit.fluxcd.io/v1beta1
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
   name: kustomizations
