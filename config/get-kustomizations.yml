@@ -1,5 +1,4 @@
-# Configures flux to read the kustomizations folder.
-# Normally it won't because of .sourceignore (which is good, because there are only templates in there).
+# Get the kustomizations in /kustomizations
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
@@ -11,7 +10,8 @@ spec:
     branch: main
   secretRef:
     name: flux-system
+  # specifically include /kustomizations to override .sourceignore 
   ignore: |
     /*
     !/kustomizations
-  url: ssh://git@github.com/aelred/manifests.git
+  url: https://github.com/aelred/manifests.git
