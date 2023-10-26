@@ -30,7 +30,7 @@ spec:
     - name: docker.io/aelred/${image:=${name}}
       newTag: ${tag}
 ---
-apiVersion: image.toolkit.fluxcd.io/v1
+apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
 metadata:
   name: ${name}
@@ -39,7 +39,7 @@ spec:
   image: docker.io/aelred/${image:=${name}}
   interval: 1m0s
 ---
-apiVersion: image.toolkit.fluxcd.io/v1
+apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
 metadata:
   name: ${name}
