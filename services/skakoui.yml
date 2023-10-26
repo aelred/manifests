@@ -1,0 +1,16 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: skakoui
+  namespace: flux-system
+spec:
+  interval: 5m
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: kustomizations
+  path: ./kustomizations/service
+  postBuild:
+    substitute:
+      name: skakoui
+      tag: master-5cb2169e-1641772846 # {"$imagepolicy": "flux-system:skakoui:tag"}
