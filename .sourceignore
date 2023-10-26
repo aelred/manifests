@@ -1,1 +1,4 @@
+# .sourceignore contains files Flux should not try to reconcile
+
+# Templates for creating Kubernetes resources - not real resources that we should create
 kustomizations/
