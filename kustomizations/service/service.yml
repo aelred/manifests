@@ -1,10 +1,11 @@
 # Sets up a service, which has:
 # - a repo at github.com/aelred/${name}, containing deployment manifests at ./deploy/manifests
-# - an image at docker.io/aelred/${img or name}
+# - an image at docker.io/aelred/${image or name}
 #
 # Image tags have to be in the format `master-<sha>-<timestamp>` to be picked up on.
 # A secret github-${name}-webhook-token should exist, the provision repo shows how to make it.
 
+# The git repo containing the deployment manifests (usually the app's repository)
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
@@ -14,6 +15,7 @@ spec:
   url: https://github.com/aelred/${name}
   interval: 5m
 ---
+# Pulls in the deployment manifests from the git repo
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
@@ -30,6 +32,7 @@ spec:
     - name: docker.io/aelred/${image:=${name}}
       newTag: ${tag}
 ---
+# The docker image repo containing the app
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
@@ -39,6 +42,7 @@ spec:
   image: docker.io/aelred/${image:=${name}}
   interval: 1m0s
 ---
+# Policy explaining how to get the latest docker image, using the format `master-<sha>-<timestamp>`
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
@@ -54,6 +58,7 @@ spec:
     numerical:
       order: asc
 ---
+# Listens for pushes to the docker image repository, notified by a webhook
 apiVersion: notification.toolkit.fluxcd.io/v1
 kind: Receiver
 metadata:
@@ -61,12 +66,16 @@ metadata:
   namespace: flux-system
 spec:
   type: dockerhub
+  # Tells the receiver to listen for this dockerhub repo's webhook token
   secretRef:
-    name: dockerhub-${name}-webhook-token
+    name: ${name}-dockerhub-webhook-token
+  # Notify the ImageRepository resource when an event happens, so it can reconcile
+  # (this DOESN'T tell the Receiver what image repository we're listening to)
   resources:
     - kind: ImageRepository
       name: ${name}
 ---
+# Listens for pushes to the git repo, notified by a webhook
 apiVersion: notification.toolkit.fluxcd.io/v1
 kind: Receiver
 metadata:
@@ -74,13 +83,14 @@ metadata:
   namespace: flux-system
 spec:
   type: github
+  # Tells the receiver to listen for this repo's webhook token
   secretRef:
-    name: github-${name}-webhook-token
+    name: ${name}-github-webhook-token
+  # Notify the GitRepostory resource when an event happens, so it can reconcile
+  # (this DOESN'T tell the Receiver what repo we're listening to)
   resources:
     - kind: GitRepository
       name: ${name}
-    - kind: Kustomization
-      name: ${name}-repo
 ---
 apiVersion: notification.toolkit.fluxcd.io/v1beta2
 kind: Provider
