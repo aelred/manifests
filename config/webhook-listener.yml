@@ -1,15 +1,18 @@
 # Listen externally for webhook calls
-apiVersion: v1
-kind: Service
+apiVersion: networking.k8s.io/v1
+kind: Ingress
 metadata:
-  name: ext-webhook-receiver
+  name: webhook-receiver
   namespace: flux-system
 spec:
-  type: LoadBalancer
-  selector:
-    app: notification-controller
-  ports:
-    - name: http
-      port: 80
-      protocol: TCP
-      targetPort: 9292
+  rules:
+  - host: webhooks.flux.ael.red
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: webhook-receiver
+            port:
+              number: 80
