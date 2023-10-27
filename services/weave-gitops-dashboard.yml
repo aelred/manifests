@@ -38,4 +38,21 @@ spec:
       create: true
       passwordHash: $2a$10$R.cjesCJWSAt03ROVXFt1uaExgHVItLcDPG.D/.TnqTWUVZ/THLFS
       username: admin
-
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ww-gitops
+  namespace: flux-system
+spec:
+  rules:
+  - host: weave.ael.red
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: ww-gitops-weave-gitops
+            port:
+              number: 80
