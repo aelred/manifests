@@ -55,4 +55,4 @@ spec:
           service:
             name: ww-gitops-weave-gitops
             port:
-              number: 80
+              number: 9001
