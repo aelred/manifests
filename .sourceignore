@@ -2,3 +2,5 @@
 
 # Templates for creating Kubernetes resources - not real resources that we should create
 kustomizations/
+
+scripts/
