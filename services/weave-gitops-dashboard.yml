@@ -44,6 +44,10 @@ kind: Ingress
 metadata:
   name: ww-gitops
   namespace: flux-system
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    cert-manager.io/cluster-issuer: letsencrypt
+    traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
 spec:
   rules:
   - host: weave.ael.red
