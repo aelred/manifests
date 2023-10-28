@@ -51,9 +51,11 @@ spec:
     server: https://acme-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
       name: letsencrypt
+    # Use the HTTP01 solver: letsencrypt challenges us to host a token at http://foo.ael.red/.well-known/something
     solvers:
     - http01:
-        ingress: {}
+        ingress:
+          ingressClassName: traefik
 ---
 # Redirect from HTTP with HTTPS for ingress with an annotation
 apiVersion: traefik.containo.us/v1alpha1
