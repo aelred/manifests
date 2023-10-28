@@ -12,5 +12,5 @@ spec:
   - kind: GitRepository
     name: manifests
   secretRef:
-    name: manifests-webhook-token
+    name: manifests-github-webhook-token
   type: github
