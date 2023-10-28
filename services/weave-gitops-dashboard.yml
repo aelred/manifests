@@ -60,3 +60,7 @@ spec:
             name: ww-gitops-weave-gitops
             port:
               number: 9001
+  tls:
+    - secretName: ww-gitops-tls
+      hosts:
+        - weave.ael.red
