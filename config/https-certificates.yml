@@ -53,8 +53,7 @@ spec:
       name: letsencrypt
     solvers:
     - http01:
-        ingress:
-          class: traefik
+        ingress: {}
 ---
 # Redirect from HTTP with HTTPS for ingress with an annotation
 apiVersion: traefik.containo.us/v1alpha1
