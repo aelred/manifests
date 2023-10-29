@@ -1,7 +1,15 @@
 # Set up HTTPS certificates, can use it with an Ingress with these annotations:
-#  kubernetes.io/ingress.class: traefik
-#  cert-manager.io/cluster-issuer: letsencrypt
-#  traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
+#   metadata:
+#     ...
+#     annotations:
+#       cert-manager.io/cluster-issuer: letsencrypt
+#       traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
+#   spec:
+#     rules: ...
+#     tls:
+#       - secretName: {$YOUR INGRESS}-tls
+#         hosts:
+#           - ${YOUR DOMAIN}.ael.red
 ---
 apiVersion: v1
 kind: Namespace
