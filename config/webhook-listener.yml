@@ -4,6 +4,9 @@ kind: Ingress
 metadata:
   name: webhook-receiver
   namespace: flux-system
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+    traefik.ingress.kubernetes.io/router.middlewares: default-redirect-https@kubernetescrd
 spec:
   rules:
   - host: webhooks.flux.ael.red
@@ -16,3 +19,7 @@ spec:
             name: webhook-receiver
             port:
               number: 80
+  tls:
+    - secretName: webhook-receiver-tls
+      hosts:
+        - webhooks.flux.ael.red
