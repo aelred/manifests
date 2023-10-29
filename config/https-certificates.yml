@@ -37,9 +37,6 @@ spec:
   interval: 1m0s
   values:
     installCRDs: true
-    webhook:
-      networkPolicy:
-        enabled: true
 ---
 # Use Letencrypt to get our HTTPS certificates
 apiVersion: cert-manager.io/v1
@@ -70,6 +67,7 @@ spec:
     scheme: https
     permanent: true
 ---
+# Because flux adds network policies in its own namespace, cert-manager challenges can't go through without this
 kind: NetworkPolicy
 apiVersion: networking.k8s.io/v1
 metadata:
