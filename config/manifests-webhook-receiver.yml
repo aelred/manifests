@@ -1,4 +1,4 @@
----
+# Add webhook receiver for the manifests repo itself, so flux is notified on push
 apiVersion: notification.toolkit.fluxcd.io/v1
 kind: Receiver
 metadata:
