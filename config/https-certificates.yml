@@ -37,7 +37,9 @@ spec:
   interval: 1m0s
   values:
     installCRDs: true
-    webhook.networkPolicy.enabled: true
+    webhook:
+      networkPolicy:
+        enabled: true
 ---
 # Use Letencrypt to get our HTTPS certificates
 apiVersion: cert-manager.io/v1
