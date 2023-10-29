@@ -10,7 +10,7 @@ spec:
   - push
   resources:
   - kind: GitRepository
-    name: manifests
+    name: flux-system
   secretRef:
     name: manifests-github-webhook-token
   type: github

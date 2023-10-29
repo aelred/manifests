@@ -4,8 +4,8 @@ set -e
 name=$1
 export token=$2
 
-echo "Adding webhook to GitHub"
 export webhook_url=$(scripts/webhook-url.sh "${name}-github" "$token")
+echo "Adding webhook to GitHub $webhook_url"
 github_request=$(jq -n '{"config": {"url": env.webhook_url, "secret": env.token }}')
 curl -L --fail --silent --show-error -o /dev/null \
   -X POST \
