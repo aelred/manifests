@@ -21,3 +21,6 @@ spec:
         name: dashboard
       version: 6.0.8
   interval: 1m0s
+  values:
+    # Setting this allows us to access the UI with `$ kubectl proxy & open http://localhost:8001/ui`
+    fullnameOverride: 'kubernetes-dashboard'
