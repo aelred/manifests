@@ -80,7 +80,7 @@ spec:
   - Ingress
   podSelector: # allow the certmanager http server (for ACME protocol) to be reached from LetsEncrypt
     matchExpressions: # Look for the labels but ignore their contents
-    - {key: certmanager.k8s.io/acme-http-domain, operator: Exists}
-    - {key: certmanager.k8s.io/acme-http-token, operator: Exists}
+    - {key: acme.cert-manager.io/http-domain, operator: Exists}
+    - {key: acme.cert-manager.io/http-token, operator: Exists}
   ingress: # allow from anywhere inside the cluster or on the internet
   - from: []
