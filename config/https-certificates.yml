@@ -56,7 +56,6 @@ spec:
     - http01:
         ingress:
           ingressClassName: traefik
-          serviceType: ClusterIP
 ---
 # Redirect from HTTP with HTTPS for ingress with an annotation
 apiVersion: traefik.containo.us/v1alpha1
