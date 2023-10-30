@@ -27,7 +27,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: ${name}
-  path: ./manifests
+  path: ./deploy/manifests
   images:
     - name: docker.io/aelred/${image:=${name}}
       newTag: ${tag}
