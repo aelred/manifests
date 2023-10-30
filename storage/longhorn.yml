@@ -28,7 +28,7 @@ spec:
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
-        name: jetstack
+        name: longhorn
       version: 1.5.1
   interval: 1m0s
   values:
