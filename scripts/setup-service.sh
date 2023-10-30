@@ -9,10 +9,10 @@ envsubst < scripts/service-template.yml > "services/$name.yml"
 
 echo "Creating GitHub webhook token"
 export github_webhook_token=$(scripts/create-token.sh "$name-github-webhook-token")
-scripts/add-webhook-to-github "$name" "$github_webhook_token"
+scripts/add-webhook-to-github.sh "$name" "$github_webhook_token"
 
 echo "Creating DockerHub webhook token"
 export dockerhub_webhook_token=$(scripts/create-token.sh "$name-dockerhub-webhook-token")
-export dockerhub_webhook_url=$(scripts/webhook-url "${name}-dockerhub" "$dockerhub_webhook_token")
+export dockerhub_webhook_url=$(scripts/webhook-url.sh "${name}-dockerhub" "$dockerhub_webhook_token")
 echo "Add URL $dockerhub_webhook_url to webhooks in DockerHub"
 open "https://hub.docker.com/repository/docker/aelred/${image}/webhooks"
