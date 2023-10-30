@@ -1,0 +1,18 @@
+# This has to be a kustomization so we can use the parameter dependsOn to make it depend on the CRDs from cert-manage
+# Use Letencrypt to get our HTTPS certificates
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt
+  namespace: cert-manager
+spec:
+  acme:
+    email: aelred717@gmail.com
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: letsencrypt
+    # Use the HTTP01 solver: letsencrypt challenges us to host a token at http://foo.ael.red/.well-known/something
+    solvers:
+    - http01:
+        ingress:
+          ingressClassName: traefik

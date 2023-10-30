@@ -11,23 +11,42 @@
 #         hosts:
 #           - ${YOUR DOMAIN}.ael.red
 ---
-# Use Letencrypt to get our HTTPS certificates
-apiVersion: cert-manager.io/v1
-kind: ClusterIssuer
+apiVersion: v1
+kind: Namespace
 metadata:
-  name: letsencrypt
-  namespace: cert-manager
+  name: cert-manager
+  labels:
+    name: cert-manager
+---
+# Install cert-manager, which manages HTTPS certificates across a cluster
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: cert-manager
+  namespace: flux-system
 spec:
-  acme:
-    email: aelred717@gmail.com
-    server: https://acme-v02.api.letsencrypt.org/directory
-    privateKeySecretRef:
-      name: letsencrypt
-    # Use the HTTP01 solver: letsencrypt challenges us to host a token at http://foo.ael.red/.well-known/something
-    solvers:
-    - http01:
-        ingress:
-          ingressClassName: traefik
+  interval: 5m
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: kustomizations
+  path: ./kustomizations/cert-manager
+---
+# Create a cluster-issuer for letsencrypt
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: cluster-issuer
+  namespace: flux-system
+spec:
+  interval: 5m
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: kustomizations
+  path: ./kustomizations/cluster-issuer
+  dependsOn:
+    - name: cert-manager
 ---
 # Redirect from HTTP with HTTPS for ingress with an annotation
 apiVersion: traefik.containo.us/v1alpha1
