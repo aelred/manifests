@@ -5,7 +5,7 @@ export name=$1
 export image=${2:-$name}
 
 echo "Creating service manifest"
-envsubst < scripts/service-template.yml > "services/$name.yml"
+envsubst '${name}' '${image}' < scripts/service-template.yml > "services/$name.yml"
 
 echo "Creating GitHub webhook token"
 export github_webhook_token=$(scripts/create-token.sh "$name-github-webhook-token")
