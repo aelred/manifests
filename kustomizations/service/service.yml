@@ -43,6 +43,7 @@ spec:
   interval: 1m0s
 ---
 # Policy explaining how to get the latest docker image, using the format `master-<sha>-<timestamp>`
+# Used by ImageUpdateAutomation
 apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImagePolicy
 metadata:
