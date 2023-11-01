@@ -16,4 +16,5 @@ kubectl -n flux-system create secret generic github-token --from-literal=token=$
 
 # Create GitHub webhook token to notify flux when changes are made to manifests
 github_webhook_token=$(scripts/create-token.sh "manifests-github-webhook-token")
+flux reconcile receiver manifests-github
 scripts/add-webhook-to-github.sh "manifests" "$github_webhook_token"
